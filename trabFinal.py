@@ -189,7 +189,7 @@ def totalizacao_precos():
         total_preco += preco_numerico
 
     titulos("Totalização de preços Daifiti e Kanui")
-    print(f"Total de Preços: R$ {total_preco:2f}")
+    print(f"Total de Preços: R$ {total_preco:.2f}")
 
 
 
@@ -213,6 +213,24 @@ def preco_maximo():
             print()
 
 
+def agrupar_sem_desconto():
+    dicionario = {}
+    for produto in produtos_com_desconto_total:
+        if produto["desconto"] == "Sem desconto":
+            # busca a palavra (chave). Se não existir: None
+            chave = dicionario.get(produto["desconto"], None)
+            if chave == None:
+                # não existe, adiciona com o nome do jogador
+                dicionario[produto["desconto"]] = produto["titulo"]
+            else:
+                # se existe, adiciona mais ", " e o nome deste jogador
+                dicionario[produto["desconto"]] = chave + ", " + produto["titulo"]
+
+    ordenados = sorted(dicionario.items(), key=lambda c : c[0])
+    
+    # para obter chave e valor
+    for (desconto, titulo) in ordenados:
+        print(f"{desconto}: {titulo}")
 
 
 
@@ -243,7 +261,7 @@ while True:
     elif opcao == 7:
         totalizacao_precos()
     elif opcao == 8:
-        pass
+        agrupar_sem_desconto()
     elif opcao == 9:
         preco_maximo()
     else:
