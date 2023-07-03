@@ -215,20 +215,16 @@ def preco_maximo():
 
 def agrupar_sem_desconto():
     dicionario = {}
-    for produto in produtos_com_desconto_total:
+    for produto in produtos_total:
         if produto["desconto"] == "Sem desconto":
-            # busca a palavra (chave). Se não existir: None
             chave = dicionario.get(produto["desconto"], None)
             if chave == None:
-                # não existe, adiciona com o nome do jogador
                 dicionario[produto["desconto"]] = produto["titulo"]
             else:
-                # se existe, adiciona mais ", " e o nome deste jogador
                 dicionario[produto["desconto"]] = chave + ", " + produto["titulo"]
 
     ordenados = sorted(dicionario.items(), key=lambda c : c[0])
     
-    # para obter chave e valor
     for (desconto, titulo) in ordenados:
         print(f"{desconto}: {titulo}")
 
