@@ -33,7 +33,7 @@ produtos_com_desconto = []
 for i in range(len(produtos_daifiti)):
     titulo = produtos_daifiti[i].get_text().strip()
     preco = preco_original_daifiti[i].get_text().strip()
-    desconto = produtos_com_desconto[i].get_text().strip() if i < len(produtos_com_desconto) else "Sem desconto"
+    desconto = preco_descontos_daifiti[i].get_text().strip() if i < len(preco_descontos_daifiti) else "Sem desconto"
     produtos_com_desconto.append({"titulo": titulo, "desconto": desconto, "preco": preco})
 
 
